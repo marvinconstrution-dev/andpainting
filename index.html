@@ -148,7 +148,7 @@
         .calc-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(243,229,171,0.3); padding: 20px; border-radius: 10px; margin-top: 15px; }
         .calc-row { margin-bottom: 15px; }
         .calc-row label { display: block; color: #f3e5ab; font-size: 0.9em; font-weight: bold; margin-bottom: 5px; }
-        .calc-row select, .calc-row input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: white; box-sizing: border-box; }
+        .calc-row select, .calc-row input, input[type="text"], input[type="tel"], input[type="date"], select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; background: #ffffff !important; color: #1a1a1a !important; font-weight: 600; box-sizing: border-box; }
         .calc-result { background: rgba(243,229,171,0.1); border: 1px dashed #f3e5ab; padding: 15px; border-radius: 8px; text-align: center; margin-top: 15px; }
         .calc-result h4 { color: #f3e5ab; margin: 0 0 5px 0; font-size: 1.1em; }
         .calc-price { font-size: 1.6em; font-weight: bold; color: #fff; margin: 0; }
@@ -277,7 +277,7 @@
 </head>
 <body>
     <div class="top-bar">
-        <img src="static/img/logo-clean.png?v=30" class="logo-corner" onclick="showSection('home')">
+        <img src="static/img/logo-clean.png?v=31" class="logo-corner" onclick="showSection('home')">
         <ul class="nav-links">
             <li><a href="javascript:void(0)" onclick="showSection('home')">Home</a></li>
             <li><a href="javascript:void(0)" onclick="showSection('services')">Services</a></li>
@@ -403,7 +403,7 @@
                 <img src="static/img/cabinets2.jpg" class="media-item visible" onclick="openLightbox(this.src)">
             </div>
 
-            <!-- TAB FOTOS EXTERIORS & CONSTRUCTION (Con todas tus fotos reales integradas y visibles) -->
+            <!-- TAB FOTOS EXTERIORS & CONSTRUCTION -->
             <div id="photo-ext" class="media-grid">
                 <img src="static/img/exterior1.jpg" class="media-item visible" onclick="openLightbox(this.src)">
                 <img src="static/img/241333.jpg" class="media-item visible" onclick="openLightbox(this.src)">
@@ -448,13 +448,7 @@
         </div>
     </section>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" onclick="closeLightbox()">
-        <span id="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="">
-    </div>
-
-    <!-- Sección Calculadora de Estimados -->
+    <!-- Sección Calculadora de Estimados (COMPLETA CON TODOS LOS SERVICIOS) -->
     <section id="calculator">
         <div class="content-card">
             <h2 style="color: #f3e5ab; margin-top:0;">INSTANT ESTIMATE CALCULATOR</h2>
@@ -466,13 +460,16 @@
                     <select id="calc-service" onchange="calculateEstimate()">
                         <option value="interior">Interior Painting (per room)</option>
                         <option value="exterior">Exterior Painting (average home)</option>
+                        <option value="commercial">Commercial Painting (sq. ft.)</option>
                         <option value="cabinets">Kitchen Cabinet Refinishing</option>
-                        <option value="drywall">Drywall / Sheetrock Repair</option>
+                        <option value="drywall">Drywall / Sheetrock Repair (patch/panel)</option>
+                        <option value="stucco">Stucco Repair & Application (sq. ft.)</option>
+                        <option value="pressure">Professional Pressure Washing (sq. ft.)</option>
                     </select>
                 </div>
                 <div class="calc-row">
-                    <label>Approximate Size / Quantity:</label>
-                    <input type="number" id="calc-qty" value="3" min="1" max="50" oninput="calculateEstimate()">
+                    <label id="calc-qty-label">Approximate Size / Quantity (Rooms):</label>
+                    <input type="number" id="calc-qty" value="3" min="1" max="5000" oninput="calculateEstimate()">
                 </div>
                 <div class="calc-result">
                     <h4>Estimated Price Range:</h4>
@@ -643,19 +640,33 @@
         function calculateEstimate() {
             const service = document.getElementById('calc-service').value;
             const qty = parseInt(document.getElementById('calc-qty').value) || 1;
+            const qtyLabel = document.getElementById('calc-qty-label');
             let min = 0, max = 0;
 
             if (service === 'interior') {
+                qtyLabel.innerText = "Approximate Size / Quantity (Rooms):";
                 min = qty * 180; max = qty * 280;
             } else if (service === 'exterior') {
-                min = 1800 + (qty * 100); max = 3200 + (qty * 150);
+                qtyLabel.innerText = "Approximate Size / Quantity (Average Homes / Floors):";
+                min = 1800 + (qty * 200); max = 3500 + (qty * 300);
+            } else if (service === 'commercial') {
+                qtyLabel.innerText = "Approximate Area (Sq. Ft.):";
+                min = qty * 2.00; max = qty * 4.50;
             } else if (service === 'cabinets') {
-                min = qty * 350; max = qty * 550;
+                qtyLabel.innerText = "Kitchen Size / Sections (Standard Kitchen = 1):";
+                min = qty * 2800; max = qty * 5200;
             } else if (service === 'drywall') {
-                min = qty * 150; max = qty * 300;
+                qtyLabel.innerText = "Number of Patches / Panels:";
+                min = qty * 150; max = qty * 350;
+            } else if (service === 'stucco') {
+                qtyLabel.innerText = "Approximate Area (Sq. Ft.):";
+                min = qty * 3.50; max = qty * 7.00;
+            } else if (service === 'pressure') {
+                qtyLabel.innerText = "Approximate Area (Sq. Ft.):";
+                min = qty * 0.35; max = qty * 0.85;
             }
 
-            document.getElementById('calc-output').innerText = "$" + min.toLocaleString() + " - $" + max.toLocaleString();
+            document.getElementById('calc-output').innerText = "$" + Math.round(min).toLocaleString() + " - $" + Math.round(max).toLocaleString();
         }
         calculateEstimate();
 
@@ -698,7 +709,7 @@
 
         function checkEnter(e) { if(e.key === 'Enter') processMessage(); }
         
-        processMessage = function() {
+        function processMessage() {
             const input = document.getElementById('user-in');
             const msgText = input.value.trim();
             if(!msgText) return;
@@ -731,3 +742,4 @@
     </script>
 </body>
 </html>
+
