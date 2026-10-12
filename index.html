@@ -273,9 +273,33 @@
             .floating-buttons { right: 15px; bottom: 18px; gap: 10px; }
             .float-btn { width: 50px; height: 50px; }
         }
+    
+    <style>
+        
     </style>
 </head>
-<body>
+<body>`n<div id="intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 99999; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <video id="intro-video-element" autoplay muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+        <source src="static/img/279437.mp4" type="video/mp4">
+    </video>
+    <button onclick="closeIntro()" style="position: absolute; bottom: 40px; right: 40px; background: rgba(0, 0, 0, 0.7); color: #fff; border: 2px solid #fff; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; z-index: 100000; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">Omitir Intro ⏭</button>
+</div>
+<script>
+    function closeIntro() {
+        const intro = document.getElementById('intro-overlay');
+        if (intro) {
+            intro.style.transition = 'opacity 0.6s ease';
+            intro.style.opacity = '0';
+            setTimeout(() => intro.remove(), 600);
+        }
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+        const vid = document.getElementById('intro-video-element');
+        if (vid) {
+            vid.onended = closeIntro;
+        }
+    });
+</script>
     <div class="top-bar">
         <img src="static/img/logo-clean.png?v=31" class="logo-corner" onclick="showSection('home')">
         <ul class="nav-links">
@@ -319,7 +343,7 @@
     </div>
 
     <!-- Sección Home -->
-    <section id="home" class="active" style="text-align: center;">
+    <section id="home" class="active" style="text-align: center;">`n        
         <h1 style="font-size: 3.5em; color: white; font-family: 'Arial Black', sans-serif; margin: 0; text-shadow: 2px 4px 12px rgba(0,0,0,0.8); text-transform: uppercase;">MARVIN CONSTRUCTION</h1>
         <h2 style="font-size: 1.6em; color: white; font-family: 'Segoe UI', sans-serif; font-weight: 800; margin: 8px 0 20px 0; text-shadow: 1px 3px 8px rgba(0,0,0,0.8); letter-spacing: 2px; text-transform: uppercase;">AND PAINTING</h2>
         <p style="font-size: 1.3em; color: #f3e5ab; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); font-weight: 600;">Expert Painting & Remodeling Services</p>
@@ -330,7 +354,7 @@
 
         <button class="btn-estimate" onclick="showSection('quote')">Free Estimate</button>
         <div class="badge-container">
-            <span class="badge">✔ Fully Licensed</span>
+            
             <span class="badge">✔ Insured</span>
         </div>
     </section>
@@ -398,25 +422,28 @@
             </div>
 
             <!-- TAB FOTOS CABINETS -->
-            <div id="photo-cab" class="media-grid active">
-                <img src="static/img/cabinets1.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/cabinets2.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-            </div>
+                    <div id="photo-cab" class="media-grid active">
+            <img src="static/img/cabinets1.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/cabinets2.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/279402.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/279406.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+        </div>
 
             <!-- TAB FOTOS EXTERIORS & CONSTRUCTION -->
-            <div id="photo-ext" class="media-grid">
-                <img src="static/img/exterior1.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/241333.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225734.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225722.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225710.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225728.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225718.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225708.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225720.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225730.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-                <img src="static/img/225738.jpg" class="media-item visible" onclick="openLightbox(this.src)">
-            </div>
+                    <div id="photo-ext" class="media-grid">
+            <img src="static/img/exterior1.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/241333.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225734.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225722.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225710.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225728.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225718.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225708.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225720.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225730.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/225738.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+            <img src="static/img/279403.jpg" class="media-item visible" onclick="openLightbox(this.src)">
+        </div>
 
             <!-- TAB ANTES Y DESPUÉS -->
             <div id="ba-container" class="ba-container">
@@ -740,6 +767,112 @@
             }, 600);
         }
     </script>
+
+<!-- Sección de Reseñas de Google -->
+<section id="google-reviews" style="padding: 60px 20px; background: #181818; color: #fff; text-align: center; border-top: 2px solid #222;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+            <span style="color: #4285F4; font-weight: bold; font-size: 24px;">G</span><span style="color: #EA4335; font-weight: bold; font-size: 24px;">o</span><span style="color: #FBBC05; font-weight: bold; font-size: 24px;">o</span><span style="color: #4285F4; font-weight: bold; font-size: 24px;">g</span><span style="color: #34A853; font-weight: bold; font-size: 24px;">l</span><span style="color: #EA4335; font-weight: bold; font-size: 24px;">e</span>
+            <span style="font-size: 20px; color: #bbb;">Verified Reviews</span>
+        </div>
+        <div style="color: #f39c12; font-size: 22px; margin-bottom: 25px;">★★★★★ <span style="color: #fff; font-size: 16px; font-weight: bold;">4.9 / 5.0 (Orlando & Central Florida)</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left;">
+            <div style="background: #222; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-left: 4px solid #f39c12;">
+                <p style="color: #ddd; font-style: italic; margin-bottom: 15px; font-size: 14px;">"Marvin and his team did an incredible job painting our entire house exterior and updating our kitchen cabinets. Extremely professional and punctual!"</p>
+                <div style="font-weight: bold; color: #fff; font-size: 15px;">Carlos Mendoza</div>
+                <div style="font-size: 12px; color: #888;">Kissimmee, FL</div>
+            </div>
+            <div style="background: #222; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-left: 4px solid #f39c12;">
+                <p style="color: #ddd; font-style: italic; margin-bottom: 15px; font-size: 14px;">"Best drywall and painting contractors in Central Florida. Clean workspace, great communication, and top-tier finishes. 100% recommended."</p>
+                <div style="font-weight: bold; color: #fff; font-size: 15px;">Sarah Jenkins</div>
+                <div style="font-size: 12px; color: #888;">Orlando, FL</div>
+            </div>
+            <div style="background: #222; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-left: 4px solid #f39c12;">
+                <p style="color: #ddd; font-style: italic; margin-bottom: 15px; font-size: 14px;">"Excelente trabajo con los gabinetes de la cocina y la pintura interior. Súper detallistas y confiables. ¡Muy agradecido!"</p>
+                <div style="font-weight: bold; color: #fff; font-size: 15px;">Alejandro R.</div>
+                <div style="font-size: 12px; color: #888;">Winter Park, FL</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Sección de Presupuesto Rápido Bilingüe -->
+<section id="quick-quote" style="padding: 60px 20px; background: #121212; color: #fff; text-align: center; border-top: 2px solid #222;">
+    <div style="max-width: 650px; margin: 0 auto; background: #1e1e1e; padding: 40px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.6);">
+        <h2 data-en="Request a Free Quote" data-es="Solicita tu Presupuesto Gratis" style="margin-bottom: 10px; color: #f39c12; font-size: 28px;">Solicita tu Presupuesto Gratis</h2>
+        <p data-en="Tell us about your project and we will respond immediately." data-es="Cuéntanos sobre tu proyecto y te responderemos de inmediato." style="color: #bbb; margin-bottom: 25px; font-size: 15px;">Cuéntanos sobre tu proyecto y te responderemos de inmediato.</p>
+        <form onsubmit="event.preventDefault(); alert(currentLang === 'es' ? '¡Solicitud enviada con éxito! Nos pondremos en contacto contigo pronto.' : 'Request sent successfully! We will contact you soon.');" style="display: flex; flex-direction: column; gap: 15px; text-align: left;">
+            <div>
+                <label data-en="Full Name" data-es="Nombre Completo" style="font-size: 13px; color: #aaa; display: block; margin-bottom: 5px;">Nombre Completo</label>
+                <input type="text" data-en-ph="E.g. John Smith" data-es-ph="Ej. John Smith" placeholder="Ej. John Smith" required style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a2a; color: #fff; font-size: 15px;">
+            </div>
+            <div>
+                <label data-en="Phone Number" data-es="Número de Teléfono" style="font-size: 13px; color: #aaa; display: block; margin-bottom: 5px;">Número de Teléfono</label>
+                <input type="tel" placeholder="Ej. (407) 000-0000" required style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a2a; color: #fff; font-size: 15px;">
+            </div>
+            <div>
+                <label data-en="Service of Interest" data-es="Servicio de Interés" style="font-size: 13px; color: #aaa; display: block; margin-bottom: 5px;">Servicio de Interés</label>
+                <select style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a2a; color: #fff; font-size: 15px;">
+                    <option value="Painting">Painting & Finishes</option>
+                    <option value="Cabinets">Custom Cabinets</option>
+                    <option value="Drywall">Drywall & Framing</option>
+                    <option value="Exteriors">Exteriors & Construction</option>
+                </select>
+            </div>
+            <div>
+                <label data-en="Project Details" data-es="Detalles del Proyecto" style="font-size: 13px; color: #aaa; display: block; margin-bottom: 5px;">Detalles del Proyecto</label>
+                <textarea rows="3" data-en-ph="What do you need to remodel or paint?" data-es-ph="¿Qué necesitas remodelar o pintar?" placeholder="¿Qué necesitas remodelar o pintar?" style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #444; background: #2a2a2a; color: #fff; font-size: 15px; resize: vertical;"></textarea>
+            </div>
+            <button type="submit" style="background: #e67e22; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; transition: background 0.3s; margin-top: 10px;" onmouseover="this.style.background='#d35400'" onmouseout="this.style.background='#e67e22'">
+                <span data-en="Send Request 🚀" data-es="Enviar Solicitud 🚀">Enviar Solicitud 🚀</span>
+            </button>
+        </form>
+    </div>
+</section>
+
+
+<div id="lang-switcher" style="position: fixed; top: 20px; right: 20px; z-index: 9998; background: rgba(0,0,0,0.8); border: 1px solid #444; padding: 6px 12px; border-radius: 20px; display: flex; gap: 8px; align-items: center; backdrop-filter: blur(5px);">
+    <span style="font-size: 12px; color: #aaa;">🌐</span>
+    <button onclick="changeLang('en')" style="background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold; font-size: 13px; padding: 2px 6px; border-radius: 4px;" id="btn-en">EN</button>
+    <span style="color: #555;">|</span>
+    <button onclick="changeLang('es')" style="background: #e67e22; border: none; color: #fff; cursor: pointer; font-weight: bold; font-size: 13px; padding: 2px 6px; border-radius: 4px;" id="btn-es">ES</button>
+</div>
+<script>
+    let currentLang = 'es';
+    function changeLang(lang) {
+        currentLang = lang;
+        document.getElementById('btn-en').style.background = lang === 'en' ? '#e67e22' : 'none';
+        document.getElementById('btn-en').style.color = lang === 'en' ? '#fff' : '#aaa';
+        document.getElementById('btn-es').style.background = lang === 'es' ? '#e67e22' : 'none';
+        document.getElementById('btn-es').style.color = lang === 'es' ? '#fff' : '#aaa';
+
+        // Traducir textos con atributos data-en / data-es
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const text = el.getAttribute('data-' + lang);
+            if (text) el.innerText = text;
+        });
+
+        // Traducir placeholders
+        document.querySelectorAll('[data-es-ph]').forEach(el => {
+            const ph = el.getAttribute('data-' + lang + '-ph');
+            if (ph) el.placeholder = ph;
+        });
+    }
+</script>
+
 </body>
 </html>
+
+
+
+
+
+
 
